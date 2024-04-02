@@ -277,8 +277,7 @@ public class FormProduk extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKeluarActionPerformed
-        new MenuUtama().setVisible(true);
-        this.dispose();
+this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnKeluarActionPerformed
 

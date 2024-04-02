@@ -111,8 +111,9 @@ ResultSet rst;
         Transaksi = new javax.swing.JMenu();
         Penjualan = new javax.swing.JMenuItem();
         Laporan = new javax.swing.JMenu();
-        Tentang = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        RekapLaporan = new javax.swing.JMenuItem();
+        Help = new javax.swing.JMenu();
+        Tentang = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1440, 900));
@@ -408,16 +409,30 @@ ResultSet rst;
 
         Laporan.setIcon(new javax.swing.ImageIcon("C:\\Users\\OWNER\\Downloads\\55.png")); // NOI18N
         Laporan.setText("Laporan");
+
+        RekapLaporan.setText("Rekap Laporan");
+        RekapLaporan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RekapLaporanActionPerformed(evt);
+            }
+        });
+        Laporan.add(RekapLaporan);
+
         jMenuBar1.add(Laporan);
 
-        Tentang.setIcon(new javax.swing.ImageIcon("C:\\Users\\OWNER\\Downloads\\help.png")); // NOI18N
+        Help.setIcon(new javax.swing.ImageIcon("C:\\Users\\OWNER\\Downloads\\help.png")); // NOI18N
+        Help.setText("Help");
+
+        Tentang.setIcon(new javax.swing.ImageIcon("C:\\Users\\OWNER\\Downloads\\66.png")); // NOI18N
         Tentang.setText("Tentang");
+        Tentang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TentangActionPerformed(evt);
+            }
+        });
+        Help.add(Tentang);
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon("C:\\Users\\OWNER\\Downloads\\66.png")); // NOI18N
-        jMenuItem1.setText("Tentang");
-        Tentang.add(jMenuItem1);
-
-        jMenuBar1.add(Tentang);
+        jMenuBar1.add(Help);
 
         setJMenuBar(jMenuBar1);
 
@@ -492,10 +507,10 @@ try {
         Master.setEnabled(true);
         Transaksi.setEnabled(true);
         Laporan.setEnabled(true);
-        txtJam.setEnabled(true);
-        txtTanggal.setEnabled(true);
-        FormLogin.setVisible(true);
-        btnRegister.setEnabled(true);
+        txtJam.setEnabled(false);
+        txtTanggal.setEnabled(false);
+        FormLogin.setVisible(false);
+        btnRegister.setEnabled(false);
         btnProduk.setEnabled(true);
         btnPelanggan.setEnabled(true);
         btnPenjualan.setEnabled(true);
@@ -505,7 +520,7 @@ try {
         btnRegister.setEnabled(false);
         }
 {
-    JOptionPane.showMessageDialog(null,"Selamat Datang"+txtUsername.getText()+"");
+    JOptionPane.showMessageDialog(null,"Selamat Datang "+txtUsername.getText()+"");
     String text = txtUsername.getText();
     lblUser.setText(text);
 }
@@ -522,7 +537,7 @@ try {
     }//GEN-LAST:event_btnMasukActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
-new MenuUtama().setVisible(true);//TODO add your handling code here:
+this.dispose();//TODO add your handling code here:
     }//GEN-LAST:event_btnBatalActionPerformed
 
     private void txtJamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJamActionPerformed
@@ -531,6 +546,15 @@ new MenuUtama().setVisible(true);//TODO add your handling code here:
     private void cmbAksesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAksesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbAksesActionPerformed
+
+    private void TentangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TentangActionPerformed
+new FormAbout().setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_TentangActionPerformed
+
+    private void RekapLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RekapLaporanActionPerformed
+new FormLaporanTransaksi().setVisible(true);
+// TODO add your handling code here:
+    }//GEN-LAST:event_RekapLaporanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -570,6 +594,7 @@ new MenuUtama().setVisible(true);//TODO add your handling code here:
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Beranda;
     private javax.swing.JInternalFrame FormLogin;
+    private javax.swing.JMenu Help;
     private javax.swing.JMenu Laporan;
     private javax.swing.JMenuItem Login;
     private javax.swing.JMenuItem Logout;
@@ -578,7 +603,8 @@ new MenuUtama().setVisible(true);//TODO add your handling code here:
     private javax.swing.JMenuItem Penjualan;
     private javax.swing.JMenuItem Produk;
     private javax.swing.JMenuItem Register;
-    private javax.swing.JMenu Tentang;
+    private javax.swing.JMenuItem RekapLaporan;
+    private javax.swing.JMenuItem Tentang;
     private javax.swing.JMenu Transaksi;
     private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnMasuk;
@@ -597,7 +623,6 @@ new MenuUtama().setVisible(true);//TODO add your handling code here:
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblUser;

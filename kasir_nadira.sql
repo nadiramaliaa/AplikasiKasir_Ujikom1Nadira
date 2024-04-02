@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Mar 2024 pada 02.27
+-- Waktu pembuatan: 02 Apr 2024 pada 04.49
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -35,6 +35,13 @@ CREATE TABLE `detailpenjualan` (
   `Subtotal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `detailpenjualan`
+--
+
+INSERT INTO `detailpenjualan` (`DetailID`, `ProdukID`, `Harga`, `JumlahProduk`, `Subtotal`) VALUES
+('DIDP004', '8990021101096', 10, 2, 20);
+
 -- --------------------------------------------------------
 
 --
@@ -53,7 +60,8 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`LoginID`, `Username`, `Password`, `HakAkses`) VALUES
-(1, 'Nadira', '12345', 'Admin');
+(1, 'Nadira', '12345', 'Admin'),
+(2, 'Amalia', '12345', 'Petugas');
 
 -- --------------------------------------------------------
 
@@ -98,7 +106,8 @@ CREATE TABLE `penjualan` (
 INSERT INTO `penjualan` (`PenjualanID`, `DetailID`, `TanggalPenjualan`, `JamPenjualan`, `TotalHarga`) VALUES
 ('IDP001', 'DIDP001', '2024-03-21', '09:10:31', 100),
 ('IDP002', 'DIDP002', '2024-03-21', '09:11:07', 10),
-('IDP003', 'DIDP003', '2024-03-21', '10:01:09', 60);
+('IDP003', 'DIDP003', '2024-03-21', '10:01:09', 60),
+('IDP004', 'DIDP004', '2024-04-01', '09:57:00', 20);
 
 -- --------------------------------------------------------
 
@@ -119,7 +128,7 @@ CREATE TABLE `produk` (
 
 INSERT INTO `produk` (`ProdukID`, `NamaProduk`, `Harga`, `Stok`) VALUES
 ('501117896574', ' vision', 20, 180),
-('8990021101096', 'lem agatis', 10, 9),
+('8990021101096', 'lem agatis', 10, 7),
 ('8998685274002', 'permen nano', 10, 24),
 ('8998830073061', 'pulpen everccos', 50, 20);
 

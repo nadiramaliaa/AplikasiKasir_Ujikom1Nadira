@@ -23,6 +23,7 @@ Connection konek;
      */
     public FormLaporanTransaksi() {
         initComponents();
+        konek = Koneksi.koneksiDB();
     }
 
     /**
@@ -147,16 +148,16 @@ Connection konek;
                 .addGap(32, 32, 32)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addComponent(DariTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DariTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                            .addComponent(SebelumTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(22, 22, 22)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(SampaiTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(197, 197, 197))
+                        .addComponent(SampaiTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(150, 150, 150))
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SebelumTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SetelahTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(SetelahTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnCari2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,58 +235,57 @@ Connection konek;
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblDataProdukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDataProdukMouseClicked
-        try {
-            int row = tblDataProduk.getSelectedRow();
-            String tabelKlik = (tblDataProduk.getModel().getValueAt(row, 1).toString());
-            String sql = "select * from detail_barang where Kode_Detail=?";
-            pst = konek.prepareStatement(sql);
-            pst.setString(1,tabelKlik);
-            rst = pst.executeQuery();
-            tblLapTransaksi.setModel(DbUtils.resultSetToTableModel(rst));
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        // TODO add your handling code here:
+   try {
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    tanggal = format.format(SebelumTanggal.getDate());
+    sql = "select * from penjualan where TanggalPenjualan < '"+tanggal+"'";
+    pst = konek.prepareStatement(sql);
+    rst = pst.executeQuery();
+    tblLapTransaksi.setModel(DbUtils.resultSetToTableModel(rst));
+} catch (Exception e) {
+     JOptionPane.showMessageDialog(null, "Data Tidak Tampil");
+}
+        // TODO add your hand:
     }//GEN-LAST:event_tblDataProdukMouseClicked
 
     private void btnCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCari1ActionPerformed
-        try {
+       try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             tanggal = format.format(SebelumTanggal.getDate());
-            tanggal2 = format.format(SampaiTanggal.getDate());
-            sql = "select * from penjualan where TanggalPenjualan < '"+tanggal+"'";
+            sql = "select * from penjualan where TanggalPenjualan < '"+ tanggal +"'";
             pst = konek.prepareStatement(sql);
             rst = pst.executeQuery();
-            tblDataProduk.setModel(DbUtils.resultSetToTableModel(rst));
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Data Tidak Tampil");
+            tblLapTransaksi.setModel(DbUtils.resultSetToTableModel(rst));
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(null, e);
         }   // TODO add your handling code here:
     }//GEN-LAST:event_btnCari1ActionPerformed
 
     private void btnCari2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCari2ActionPerformed
-        try {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            tanggal = format.format(SebelumTanggal.getDate());
-            sql = "select * from penjualan where TanggalPenjualan < '"+tanggal+"'";
-            pst = konek.prepareStatement(sql);
-            rst = pst.executeQuery();
-            tblDataProduk.setModel(DbUtils.resultSetToTableModel(rst));
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Data Tidak Tampil");
-        }
-        // TODO add your handling code here:
+ try {
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    tanggal = format.format(DariTanggal.getDate());
+    tanggal2= format.format(SampaiTanggal.getDate());
+    sql = "select * from penjualan where TanggalPenjualan between '"+tanggal+"' and '"+tanggal2+"'";
+    pst = konek.prepareStatement(sql);
+    rst = pst.executeQuery();
+    tblLapTransaksi.setModel(DbUtils.resultSetToTableModel(rst));
+} catch (Exception e) {
+     JOptionPane.showMessageDialog(null, "Data Tidak Tampil");
+}
+ // TODO add your handling code here:
     }//GEN-LAST:event_btnCari2ActionPerformed
 
     private void btnCari3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCari3ActionPerformed
-        try {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            tanggal = format.format(SebelumTanggal.getDate());
-            sql = "select * from penjualan where TanggalPenjualan < '"+tanggal+"'";
-            pst = konek.prepareStatement(sql);
-            rst = pst.executeQuery();
-            tblDataProduk.setModel(DbUtils.resultSetToTableModel(rst));
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Data Tidak Tampil");
+    try {
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    tanggal = format.format(SetelahTanggal.getDate());
+    sql = "select * from penjualan where TanggalPenjualan > '"+tanggal+"'";
+    pst = konek.prepareStatement(sql);
+    rst = pst.executeQuery();
+    tblLapTransaksi.setModel(DbUtils.resultSetToTableModel(rst));
+} catch (Exception e) {
+     JOptionPane.showMessageDialog(null, "Data Tidak Tampil");
         }       // TODO add your handling code here:
     }//GEN-LAST:event_btnCari3ActionPerformed
 

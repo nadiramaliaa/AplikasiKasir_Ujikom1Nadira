@@ -220,6 +220,7 @@ public class FormPenjualan extends javax.swing.JFrame {
         btnBaru = new javax.swing.JButton();
         btnTambah = new javax.swing.JButton();
         btnHapud = new javax.swing.JButton();
+        btnKeluar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -379,6 +380,15 @@ public class FormPenjualan extends javax.swing.JFrame {
         getContentPane().add(btnHapud);
         btnHapud.setBounds(330, 410, 40, 30);
 
+        btnKeluar.setText("KELUAR");
+        btnKeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKeluarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnKeluar);
+        btnKeluar.setBounds(330, 730, 72, 23);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -479,6 +489,10 @@ try {
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
        cari();  // TODO add your handling code here:
     }//GEN-LAST:event_btnCariActionPerformed
+
+    private void btnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKeluarActionPerformed
+this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnKeluarActionPerformed
     
     /**
      * @param args the command line arguments
@@ -520,6 +534,7 @@ try {
     private javax.swing.JButton btnBayar;
     private javax.swing.JButton btnCari;
     private javax.swing.JButton btnHapud;
+    private javax.swing.JButton btnKeluar;
     private javax.swing.JButton btnTambah;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
